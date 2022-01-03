@@ -3,13 +3,16 @@ body {
   margin: 0;
 }
 
+* {
+  font-family: 'Playfair Display', serif;
+}
+
 #uklon-app {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
   min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
   position: relative;
 }
 
@@ -29,13 +32,21 @@ body {
 }
 
 #uklon-app h2 {
-  font-size: 32px;
-  line-height: 1.17;
-  font-weight: 400;
-  color: #000;
+  font-size: 36px;
+  text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.652), 0px 0px 3px rgba(255, 255, 255, 0.624);
+  line-height: 36px;
+  font-weight: bold;
   text-align: center;
   margin: 0;
   margin-bottom: 32px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#uklon-app h2 span {
+  font-size: 16px;
+  line-height: 48px;
+  text-transform: lowercase;
 }
 
 @media (max-width: 990px) {
@@ -63,30 +74,30 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
+  color: #fcd729;
 }
 
-#uklon-app .welcomePage img {
-  margin-bottom: 40px;
-  width: 400px;
+#uklon-app .welcomePage .welcomeBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+#uklon-app .welcomePage .logo {
+  width: 300px;
+  margin-bottom: 16px;
+  -webkit-filter: drop-shadow(0 0 4px white);
 }
 
 @media (max-width: 990px) {
-  #uklon-app .welcomePage img {
+  #uklon-app .welcomePage .logo {
     width: 280px;
   }
 }
 
-#uklon-app .welcomePage .shopper {
-  width: 230px;
-}
-
-@media (max-width: 990px) {
-  #uklon-app .welcomePage .shopper {
-    width: 180px;
-  }
-}
-
 #uklon-app .welcomePage button {
+  text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.652), 0px 0px 3px rgba(255, 255, 255, 0.624);
   background-color: transparent;
   position: relative;
   border: none;
@@ -95,6 +106,7 @@ body {
   overflow: hidden;
   padding: 4px 0;
   cursor: pointer;
+  color: #fcd729;
 }
 
 #uklon-app .welcomePage button:hover::before {
@@ -111,7 +123,7 @@ body {
   width: 100%;
   bottom: 0;
   left: 0;
-  background-color: #0ED88A;
+  background-color: #7f0909;
   -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
   transition-property: transform;
@@ -157,6 +169,7 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
+  overflow: hidden;
   -webkit-transition: .4s all ease;
   transition: .4s all ease;
 }
@@ -242,10 +255,6 @@ body {
   cursor: pointer;
   border-radius: 2px;
   will-change: transform;
-  -webkit-animation: appear .5s ease;
-          animation: appear .5s ease;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
 }
 
 #uklon-app .banner:hover {
@@ -260,7 +269,7 @@ body {
 }
 
 #uklon-app .bannerSm {
-  width: 64px;
+  width: 124px;
 }
 
 @media (max-width: 990px) {
@@ -269,24 +278,37 @@ body {
   }
 }
 
-#uklon-app .bannerMd {
-  width: 88px;
+#uklon-app .appear {
+  -webkit-animation: appear .5s ease;
+          animation: appear .5s ease;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
 }
 
-@media (max-width: 990px) {
-  #uklon-app .bannerMd {
-    width: 80px !important;
-  }
+#uklon-app .tremor {
+  -webkit-animation: tremor 0.1s linear infinite;
+          animation: tremor 0.1s linear infinite;
 }
 
-#uklon-app .bannerLg {
-  width: 120px;
+#uklon-app .hpBar {
+  position: absolute;
+  width: 600px;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.604);
+  left: 50%;
+  bottom: 40px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
-@media (max-width: 990px) {
-  #uklon-app .bannerLg {
-    width: 80px !important;
-  }
+#uklon-app .hpBar .hpBarInner {
+  width: 100%;
+  height: 100%;
+  background-color: #a50404;
+  -webkit-transition: .2s all ease;
+  transition: .2s all ease;
 }
 
 @-webkit-keyframes appear {
@@ -316,6 +338,44 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes tremor {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  33% {
+    -webkit-transform: rotate(3deg);
+            transform: rotate(3deg);
+  }
+  66% {
+    -webkit-transform: rotate(-3deg);
+            transform: rotate(-3deg);
+  }
+  to {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+
+@keyframes tremor {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  33% {
+    -webkit-transform: rotate(3deg);
+            transform: rotate(3deg);
+  }
+  66% {
+    -webkit-transform: rotate(-3deg);
+            transform: rotate(-3deg);
+  }
+  to {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
   }
 }
 /*# sourceMappingURL=styles.css.map */

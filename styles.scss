@@ -3,11 +3,14 @@ body {
   margin: 0;
 }
 
+ * {
+  font-family: 'Playfair Display', serif;
+ }
+
 #uklon-app {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
   position: relative;
 
   * {
@@ -28,14 +31,24 @@ body {
   //test
 
   h2 {
-    font-size: 32px;
-    line-height: 1.17;
-    // font-family: 'Namupro',Arial,sans-serif;
-    font-weight: 400;
-    color: #000;
+    font-size: 36px;
+    text-shadow:
+    0px 0px 3px rgba(255, 255, 255, 0.652),
+    0px 0px 3px rgba(255, 255, 255, 0.624);
+    line-height: 36px;
+    font-weight: bold;
     text-align: center;
     margin: 0;
     margin-bottom: 32px;
+    text-align: center;
+
+    text-transform: uppercase;
+
+    span {
+      font-size: 16px;
+      line-height: 48px;
+      text-transform: lowercase;
+    }
 
     @media(max-width: 990px) {
       font-size: 24px;
@@ -51,24 +64,28 @@ body {
     width: 100%;
     flex-direction: column;
     position: relative;
+    color: #fcd729;
 
-    img {
-      margin-bottom: 40px;
-      width: 400px;
-
+    .welcomeBg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+    }
+    
+    .logo {
+      width: 300px;
+      margin-bottom: 16px;
+      -webkit-filter: drop-shadow(0 0 4px rgb(255, 255, 255));
       @media(max-width: 990px) {
         width: 280px;
       }
     }
 
-    .shopper {
-      width: 230px;
-      @media(max-width: 990px) {
-        width: 180px;
-      }
-    }
-
     button {
+      text-shadow:
+      0px 0px 3px rgba(255, 255, 255, 0.652),
+      0px 0px 3px rgba(255, 255, 255, 0.624);
       background-color: transparent;
       position: relative;
       border: none;
@@ -77,6 +94,7 @@ body {
       overflow: hidden;
       padding: 4px 0;
       cursor: pointer;
+      color: #fcd729;
 
       &:hover {
         &::before {
@@ -92,7 +110,7 @@ body {
         width: 100%;
         bottom: 0;
         left: 0;
-        background-color: #0ED88A;
+        background-color: #7f0909;
         transition-property: transform;
         transition-duration: 0.35s;
         transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -131,6 +149,7 @@ body {
     width: 100%;
     height: 100%;
     position: absolute;
+    overflow: hidden;
     transition: .4s all ease;
 
     .playBg {
@@ -204,8 +223,7 @@ body {
     cursor: pointer;
     border-radius: 2px;
     will-change: transform;
-    animation: appear .5s ease;
-    animation-iteration-count: 1;
+
     &:hover {
       transform: scale(1.05);
       z-index: 100;
@@ -217,25 +235,39 @@ body {
   }
 
   .bannerSm {
-    width: 64px;
+    width: 124px;
     @media(max-width: 990px) {
       width: 80px !important;
     }
   }
 
-  .bannerMd {
-    width: 88px;
-
-    @media(max-width: 990px) {
-      width: 80px !important;
-    }
+  .appear {
+    animation: appear .5s ease;
+    animation-iteration-count: 1;
   }
 
-  .bannerLg {
-    width: 120px;
+  .tremor {
+    animation: tremor 0.1s linear infinite;
+  }
 
-    @media(max-width: 990px) {
-      width: 80px !important;
+  .hpBar {
+    position: absolute;
+    width: 600px;
+    height: 8px;
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.604);
+
+    left: 50%;
+    bottom: 40px;
+
+    transform: translateX(-50%);
+
+    .hpBarInner {
+      width: 100%;
+      height: 100%;
+      background-color: rgb(165, 4, 4);
+      transition: .2s all ease;
     }
   }
 
@@ -253,5 +285,26 @@ body {
       opacity: 1;
     }
   }
+
+  @keyframes tremor {
+    from {
+      transform: rotate(0);
+    }
+
+    33% {
+      transform: rotate(3deg);
+    }
+
+    66% {
+      transform: rotate(-3deg);
+    }
+
+    to {
+      transform: rotate(0);
+    }
+  }
+
+
+
 }
 

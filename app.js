@@ -89,6 +89,21 @@ window.addEventListener('load', () => {
     }, 1000);
   }
 
+  const text = 'Welcome to the Hogwarts security system'
+
+  const buildWelcomeText = (text) => {
+    const wrapper = document.createElement('h2')
+
+    for (const i of text) {
+      const separateElement = document.createElement('span')
+      separateElement.innerText = i
+      
+      
+    }
+
+
+  }
+
   tremorRandomItem()
 
 })

@@ -483,6 +483,110 @@ body {
           animation-fill-mode: forwards;
 }
 
+.keys {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.key__button {
+  position: absolute;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  line-height: 80px;
+  font-size: 22px;
+  width: 40px;
+  color: #555;
+  cursor: pointer;
+  margin: 0 8px;
+  height: 40px;
+  border-color: #f2f2f2;
+  border-style: solid;
+  text-shadow: 0 0.5px 1px #777, 0 2px 6px #f2f2f2;
+  border-width: 1px;
+  border-radius: 10px;
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, #D2D2D2 80%, #c0c0c0 100%);
+  font-family: sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: -webkit-box-shadow 0.3s ease, -webkit-transform 0.15s ease;
+  transition: -webkit-box-shadow 0.3s ease, -webkit-transform 0.15s ease;
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  transition: box-shadow 0.3s ease, transform 0.15s ease, -webkit-box-shadow 0.3s ease, -webkit-transform 0.15s ease;
+  -webkit-box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 6px 0 #C0C0C0, 0 8px 17px rgba(68, 68, 68, 0.4), 2px 1px 4px rgba(68, 68, 68, 0.25), -2px 1px 4px rgba(68, 68, 68, 0.25), 0 9px 16px rgba(68, 68, 68, 0.1);
+          box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 6px 0 #C0C0C0, 0 8px 17px rgba(68, 68, 68, 0.4), 2px 1px 4px rgba(68, 68, 68, 0.25), -2px 1px 4px rgba(68, 68, 68, 0.25), 0 9px 16px rgba(68, 68, 68, 0.1);
+}
+
+.key__button:hover, .key__button:focus {
+  -webkit-box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 4px 0 #C0C0C0, 0 2px 35px rgba(68, 68, 68, 0.3), 2px 2px 4px rgba(68, 68, 68, 0.25), -2px 2px 4px rgba(68, 68, 68, 0.25), 0 7px 4px rgba(68, 68, 68, 0.1);
+          box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 4px 0 #C0C0C0, 0 2px 35px rgba(68, 68, 68, 0.3), 2px 2px 4px rgba(68, 68, 68, 0.25), -2px 2px 4px rgba(68, 68, 68, 0.25), 0 7px 4px rgba(68, 68, 68, 0.1);
+  -webkit-transform: translateY(calc($key-translate + 2px));
+          transform: translateY(calc($key-translate + 2px));
+}
+
+.key__button:active {
+  -webkit-box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 0 0 #C0C0C0, 0 0px 30px rgba(68, 68, 68, 0.15), 2px 2px 4px rgba(68, 68, 68, 0.25), -2px 2px 4px rgba(68, 68, 68, 0.25), 0 0px 4px rgba(68, 68, 68, 0.25);
+          box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 0 0 #C0C0C0, 0 0px 30px rgba(68, 68, 68, 0.15), 2px 2px 4px rgba(68, 68, 68, 0.25), -2px 2px 4px rgba(68, 68, 68, 0.25), 0 0px 4px rgba(68, 68, 68, 0.25);
+  -webkit-transform: translateY(calc($key-translate + 4px));
+          transform: translateY(calc($key-translate + 4px));
+}
+
+.key__button img {
+  opacity: 0.2;
+}
+
+.arrow {
+  width: 60%;
+  height: 60%;
+}
+
+.key__button--1 {
+  -webkit-transform: translateY(-120%);
+          transform: translateY(-120%);
+}
+
+.key__button--2 {
+  -webkit-transform: translateX(120%);
+          transform: translateX(120%);
+}
+
+.key__button--3 {
+  -webkit-transform: translateX(-120%);
+          transform: translateX(-120%);
+}
+
+.arrow--1 {
+  -webkit-transform: rotate(90deg) scaleY(0.9);
+          transform: rotate(90deg) scaleY(0.9);
+}
+
+.arrow--2 {
+  -webkit-transform: rotate(180deg) scaleY(0.9);
+          transform: rotate(180deg) scaleY(0.9);
+}
+
+.arrow--3 {
+  -webkit-transform: scaleY(0.9);
+          transform: scaleY(0.9);
+}
+
+.arrow--4 {
+  -webkit-transform: rotate(270deg) scaleY(0.9);
+          transform: rotate(270deg) scaleY(0.9);
+}
+
 @-webkit-keyframes textDestroy {
   from {
     opacity: 1;

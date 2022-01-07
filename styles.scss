@@ -434,19 +434,27 @@ body {
   width: 60%;
   height: 60%;
 }
+.key__button {
+  will-change: tranform;
+}
+
 .key__button--1 {
   transform: translateY(5px);
+  animation: key1 1.2s ease infinite;
 }
 .key__button--2 {
   transform: translate(105%, $key-translate);
+  animation: key2 1.2s ease infinite;
 }
 
 .key__button--3 {
   transform: translate(-105%, $key-translate);
+  animation: key3 1.2s ease infinite;
 }
 
 .key__button--4 {
   transform: translateY($key-translate);
+  animation: key4 1.2s ease infinite;
 }
 
 .arrow--1 {
@@ -489,5 +497,53 @@ body {
 
   to {
     transform: translate(-50%, calc(50vh - 100px)) scale(1.3);
+  }
+}
+
+@keyframes key1 {
+  0% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes key2 {
+  0% {
+    transform: translate(105%, $key-translate);
+  }
+  50% {
+    transform: translate(105%, 110%);
+  }
+  100% {
+    transform: translate(105%, $key-translate);
+  }
+}
+
+@keyframes key3 {
+  0% {
+    transform: translate(-105%, $key-translate);
+  }
+  50% {
+    transform: translate(-105%, 110%);
+  }
+  100% {
+    transform: translate(-105%, $key-translate);
+  }
+}
+
+@keyframes key4 {
+  0% {
+    transform: translateY($key-translate);
+  }
+  50% {
+    transform: translateY(140%);
+  }
+  100% {
+    transform: translateY($key-translate);
   }
 }

@@ -58,7 +58,7 @@ window.addEventListener('load', () => {
     newEl.addEventListener('click', () => {
       smCleaned += 1
       hpBarInner.style.transform = `translateX(-${smCleaned * 6.5}%)`
-
+      triggerSpidersSound()
       newEl.classList.add('hidden')
       if (smCleaned < 5) {
         setTimeout(() => {
@@ -67,7 +67,14 @@ window.addEventListener('load', () => {
           }, 300);
           createSmItem()
         }, 5000);
-      } else if (smCleaned >= 15) {
+      } else {
+        setTimeout(() => {
+          setTimeout(() => {
+            newEl.remove()
+          }, 300);
+        }, 5000);
+      }
+      if (smCleaned >= 15) {
         hpBar.classList.add('textDestroy')
 
         setTimeout(() => {
@@ -78,6 +85,7 @@ window.addEventListener('load', () => {
 
     playAreaWrapper.appendChild(newEl)
   }
+
 
   const tremorRandomItem = () => {
 
@@ -107,8 +115,29 @@ window.addEventListener('load', () => {
 
 
     }
+  }
 
+  const triggerSpidersSound = () => {
+    const sound = document.createElement('audio')
+    sound.setAttribute('src', './audio/spiderSound.mp3')
+    document.body.appendChild(sound)
+    sound.style.opacity = 0
+    sound.style.position = 'absolute'
+    sound.play()
+    sound.volume = 0.1
+    setTimeout(() => {
+      sound.remove()
+    }, 1000);
+  }
 
+  const bossFightSound = () => {
+    const sound = document.createElement('audio')
+    sound.setAttribute('src', './audio/battle.mp3')
+    document.body.appendChild(sound)
+    sound.style.opacity = 0
+    sound.style.position = 'absolute'
+    sound.play()
+    sound.volume = 0.2
   }
 
   const triggerBoss = () => {
@@ -140,6 +169,7 @@ window.addEventListener('load', () => {
             bossSecondTextReply.classList.add('textDestroy')
             setTimeout(() => {
               bossWrapper.classList.add('bossTrigger')
+              bossFightSound()
               hpBarInner.style.transform = `translateX(0)`
               hpBar.classList.remove('textDestroy')
               bossSecondTextReply.remove()

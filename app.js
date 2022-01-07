@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
   const playAreaWrapperHeight = playAreaWrapper.clientHeight - 16;
   const playAreaWrapperWidth = playAreaWrapper.clientWidth - 16;
   const hpBarInner = document.querySelector('.hpBarInner')
+  const hpBar = document.querySelector('.hpBar')
 
   const getRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -20,15 +21,15 @@ window.addEventListener('load', () => {
   if (firstScreenButton) {
     firstScreenButton.addEventListener('click', () => {
       firstScreenWrapper.classList.add('hidden')
+      setTimeout(() => {
+        playPage.classList.remove('hidden')
         setTimeout(() => {
-          playPage.classList.remove('hidden')
+          firstScreenWrapper.classList.add('removed')
           setTimeout(() => {
-            firstScreenWrapper.classList.add('removed')
-            setTimeout(() => {
-              createItems()
-            }, 400);
-          }, 500);
-        }, 250);
+            createItems()
+          }, 400);
+        }, 500);
+      }, 250);
     })
   }
 
@@ -59,13 +60,19 @@ window.addEventListener('load', () => {
       hpBarInner.style.transform = `translateX(-${smCleaned * 6.5}%)`
 
       newEl.classList.add('hidden')
-      if (smCleaned <= 5) {
+      if (smCleaned < 5) {
         setTimeout(() => {
-        setTimeout(() => {
-          newEl.remove()
-        }, 300);
+          setTimeout(() => {
+            newEl.remove()
+          }, 300);
           createSmItem()
-      }, 5000);
+        }, 5000);
+      } else if (smCleaned >= 15) {
+        hpBar.classList.add('textDestroy')
+
+        setTimeout(() => {
+          triggerBoss()
+        }, 300);
       }
     })
 
@@ -97,11 +104,50 @@ window.addEventListener('load', () => {
     for (const i of text) {
       const separateElement = document.createElement('span')
       separateElement.innerText = i
-      
-      
+
+
     }
 
 
+  }
+
+  const triggerBoss = () => {
+    const bossWrapper = document.createElement('div')
+    bossWrapper.classList.add('boss', 'bossAppear')
+    const bossImage = document.createElement('img')
+    bossImage.setAttribute('src', './assets/boss.png')
+    bossWrapper.appendChild(bossImage)
+    document.body.appendChild(bossWrapper)
+
+    const bossFirstTextReply = document.createElement('div')
+    const bossSecondTextReply = document.createElement('div')
+    bossFirstTextReply.innerText = `Once upon a time, someone like you came here... with a scar, though not as grumpy as you, and without a beard, he caused a lot of trouble for my kids...`
+    bossSecondTextReply.innerText = `I will not let you make them suffer again! Arghhh!!!!`
+    bossFirstTextReply.classList.add('bossText')
+    bossSecondTextReply.classList.add('bossText', 'bossText2')
+
+
+    setTimeout(() => {
+      bossWrapper.appendChild(bossFirstTextReply)
+
+      setTimeout(() => {
+        bossFirstTextReply.classList.add('textDestroy')
+        setTimeout(() => {
+          bossFirstTextReply.remove()
+          bossWrapper.appendChild(bossSecondTextReply)
+
+          setTimeout(() => {
+            bossSecondTextReply.classList.add('textDestroy')
+            setTimeout(() => {
+              bossWrapper.classList.add('bossTrigger')
+              hpBarInner.style.transform = `translateX(0)`
+              hpBar.classList.remove('textDestroy')
+              bossSecondTextReply.remove()
+            }, 350);
+          }, 2000);
+        }, 350);
+      }, 5000);
+    }, 2300);
   }
 
   tremorRandomItem()

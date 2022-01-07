@@ -283,6 +283,7 @@ body {
 
     to {
       opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -303,8 +304,106 @@ body {
       transform: rotate(0);
     }
   }
-
-
-
 }
 
+.boss {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 400px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.bossAppear {
+  animation: bossAppear 2s ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.bossText {
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 16px;
+  width: 460px;
+  animation: textAppear .5s ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  position: absolute;
+  left: calc(50% + 20px);;
+  top: calc(50% - 20px);
+}
+
+.bossText2 {
+  left: -50%;
+  top: calc(50% - 100px);
+}
+
+
+@keyframes textAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.textDestroy {
+  animation: textDestroy .3s ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.textAppear {
+  animation: textAppear .3s ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.bossTrigger {
+  animation: bossTrigger .5s ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes textDestroy {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes bossAppear {
+  from {
+    transform: translate(-50%, -100%);
+  }
+
+  to {
+    transform: translate(-50%, calc(50vh - 200px));
+  }
+}
+
+@keyframes bossTrigger {
+  from {
+    transform: translate(-50%, calc(50vh - 200px));
+  }
+
+  to {
+    transform: translate(-50%, calc(50vh - 100px)) scale(1.3);
+  }
+}

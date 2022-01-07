@@ -323,6 +323,8 @@ body {
   }
   to {
     opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
@@ -338,6 +340,8 @@ body {
   }
   to {
     opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
@@ -376,6 +380,168 @@ body {
   to {
     -webkit-transform: rotate(0);
             transform: rotate(0);
+  }
+}
+
+.boss {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
+  width: 400px;
+}
+
+.boss img {
+  width: 100%;
+}
+
+.bossAppear {
+  -webkit-animation: bossAppear 2s ease;
+          animation: bossAppear 2s ease;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.bossText {
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 16px;
+  width: 460px;
+  -webkit-animation: textAppear .5s ease;
+          animation: textAppear .5s ease;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  position: absolute;
+  left: calc(50% + 20px);
+  top: calc(50% - 20px);
+}
+
+.bossText2 {
+  left: -50%;
+  top: calc(50% - 100px);
+}
+
+@-webkit-keyframes textAppear {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes textAppear {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.textDestroy {
+  -webkit-animation: textDestroy .3s ease;
+          animation: textDestroy .3s ease;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.textAppear {
+  -webkit-animation: textAppear .3s ease;
+          animation: textAppear .3s ease;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.bossTrigger {
+  -webkit-animation: bossTrigger .5s ease;
+          animation: bossTrigger .5s ease;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes textDestroy {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes textDestroy {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes bossAppear {
+  from {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%);
+  }
+  to {
+    -webkit-transform: translate(-50%, calc(50vh - 200px));
+            transform: translate(-50%, calc(50vh - 200px));
+  }
+}
+
+@keyframes bossAppear {
+  from {
+    -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%);
+  }
+  to {
+    -webkit-transform: translate(-50%, calc(50vh - 200px));
+            transform: translate(-50%, calc(50vh - 200px));
+  }
+}
+
+@-webkit-keyframes bossTrigger {
+  from {
+    -webkit-transform: translate(-50%, calc(50vh - 200px));
+            transform: translate(-50%, calc(50vh - 200px));
+  }
+  to {
+    -webkit-transform: translate(-50%, calc(50vh - 100px)) scale(1.3);
+            transform: translate(-50%, calc(50vh - 100px)) scale(1.3);
+  }
+}
+
+@keyframes bossTrigger {
+  from {
+    -webkit-transform: translate(-50%, calc(50vh - 200px));
+            transform: translate(-50%, calc(50vh - 200px));
+  }
+  to {
+    -webkit-transform: translate(-50%, calc(50vh - 100px)) scale(1.3);
+            transform: translate(-50%, calc(50vh - 100px)) scale(1.3);
   }
 }
 /*# sourceMappingURL=styles.css.map */

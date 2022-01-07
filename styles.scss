@@ -1,6 +1,7 @@
 $key-quantity: 10;
 $key-width: 46px;
-$key-translate: 120%;
+$key-translate: 130%;
+$key-translateX: 100%;
 
 body {
   padding: 0;
@@ -387,7 +388,7 @@ body {
   position: fixed;
   top: 40px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(calc(-50% - 24px));
 }
 
 .key__button {
@@ -433,16 +434,19 @@ body {
   width: 60%;
   height: 60%;
 }
-
 .key__button--1 {
-  transform: translateY(-$key-translate);
+  transform: translateY(5px);
+}
+.key__button--2 {
+  transform: translate(105%, $key-translate);
 }
 
-.key__button--2 {
-  transform: translateX($key-translate);
-}
 .key__button--3 {
-  transform: translateX(-$key-translate);
+  transform: translate(-105%, $key-translate);
+}
+
+.key__button--4 {
+  transform: translateY($key-translate);
 }
 
 .arrow--1 {

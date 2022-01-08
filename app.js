@@ -6,8 +6,14 @@ window.addEventListener('load', () => {
   const playPage = document.querySelector('#uklon-app .playPage')
   const playAreaWrapperHeight = playAreaWrapper.clientHeight - 16;
   const playAreaWrapperWidth = playAreaWrapper.clientWidth - 16;
-  const hpBarInner = document.querySelector('.hpBarInner')
   const hpBar = document.querySelector('.hpBar')
+  const hpBarInner = document.querySelector('.hpBarInner')
+  const timeBar = document.querySelector('.timeBar')
+  const timeBarInner = document.querySelector('.timeBarInner')
+  const arrowsWrapper = document.querySelector('.keys')
+  const leftButton = document.getElementById('ArrowLeft')
+  const keys = ['ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft']
+  let currentActiveButton = 'ArrowLeft'
 
   const getRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -17,12 +23,16 @@ window.addEventListener('load', () => {
 
   let items = 10
   let smCleaned = 0
+  let isGameStarted = false
+  let bossHp = 20
 
   if (firstScreenButton) {
     firstScreenButton.addEventListener('click', () => {
       firstScreenWrapper.classList.add('hidden')
+      isGameStarted = true
       setTimeout(() => {
         playPage.classList.remove('hidden')
+        triggerMainSound()
         setTimeout(() => {
           firstScreenWrapper.classList.add('removed')
           setTimeout(() => {
@@ -32,6 +42,23 @@ window.addEventListener('load', () => {
       }, 250);
     })
   }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !isGameStarted) {
+      isGameStarted = true
+      firstScreenWrapper.classList.add('hidden')
+      setTimeout(() => {
+        playPage.classList.remove('hidden')
+        triggerMainSound()
+        setTimeout(() => {
+          firstScreenWrapper.classList.add('removed')
+          setTimeout(() => {
+            createItems()
+          }, 400);
+        }, 500);
+      }, 250);
+    }
+  })
 
   const createItems = () => {
     for (let i = 0; i <= items; i++) {
@@ -130,6 +157,17 @@ window.addEventListener('load', () => {
     }, 1000);
   }
 
+  const triggerMainSound = () => {
+    const sound = document.createElement('audio')
+    sound.setAttribute('src', './audio/intro.mp3')
+    sound.setAttribute('id', 'intro')
+    document.body.appendChild(sound)
+    sound.style.opacity = 0
+    sound.style.position = 'absolute'
+    sound.play()
+    sound.volume = 0.05
+  }
+
   const bossFightSound = () => {
     const sound = document.createElement('audio')
     sound.setAttribute('src', './audio/battle.mp3')
@@ -138,6 +176,56 @@ window.addEventListener('load', () => {
     sound.style.position = 'absolute'
     sound.play()
     sound.volume = 0.2
+  }
+
+  const bossFightTrigger = () => {
+    arrowsWrapper.classList.remove('keysHidden')
+    timeBar.style.opacity = 1
+    timeBarInner.style.transition = '10s all linear'
+    timeBarInner.style.transform = 'translateX(-100%)'
+    leftButton.classList.add(currentActiveButton)
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === currentActiveButton) {
+        bossHp -= 1
+
+        if (bossHp < 1) {
+          hpBarInner.style.transform = `translateX(-100%)`
+          arrowsWrapper.classList.add('keysHidden')
+
+          const bossSecondTextReply = document.createElement('div')
+          bossSecondTextReply.innerText = `ShhhhhSHhsh... Youuu win....`
+          bossSecondTextReply.classList.add('bossText', 'bossText2')
+
+          setTimeout(() => {
+            hpBar.style.opacity = 0
+            timeBar.style.opacity = 0
+          }, 500);
+
+          setTimeout(() => {
+            const lastPage = document.querySelector('.lastPage')
+            lastPage.style.opacity = 1
+            lastPage.style.zIndex = 100
+            lastPage.style.pointerEvents = 'all'
+          }, 1500);
+        } else {
+          const currKey = document.getElementById(currentActiveButton)
+          currKey.classList.remove(currentActiveButton)
+          timeBarInner.style.transition = '1s all linear'
+          timeBarInner.style.transform = 'translateX(0)'
+          const nextArrow = keys[getRandomInt(0, keys.length - 1)]
+          currentActiveButton = nextArrow
+          console.log(((20 - bossHp) / 2) * 10, 'hp');
+          hpBarInner.style.transform = `translateX(-${((20 - bossHp) / 2) * 10}%)`
+          setTimeout(() => {
+            timeBarInner.style.transition = '10s all linear'
+            timeBarInner.style.transform = 'translateX(-100%)'
+            const nextKey = document.getElementById(currentActiveButton)
+            nextKey.classList.add(currentActiveButton)
+          }, 1000);
+        }
+      }
+    })
   }
 
   const triggerBoss = () => {
@@ -173,6 +261,7 @@ window.addEventListener('load', () => {
               hpBarInner.style.transform = `translateX(0)`
               hpBar.classList.remove('textDestroy')
               bossSecondTextReply.remove()
+              bossFightTrigger()
             }, 350);
           }, 2000);
         }, 350);

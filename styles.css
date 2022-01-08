@@ -55,7 +55,7 @@ body {
   }
 }
 
-#uklon-app .welcomePage {
+#uklon-app .welcomePage, #uklon-app .lastPage {
   -webkit-transition: .5s all ease;
   transition: .5s all ease;
   display: -webkit-box;
@@ -77,26 +77,26 @@ body {
   color: #fcd729;
 }
 
-#uklon-app .welcomePage .welcomeBg {
+#uklon-app .welcomePage .welcomeBg, #uklon-app .lastPage .welcomeBg {
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: -1;
 }
 
-#uklon-app .welcomePage .logo {
+#uklon-app .welcomePage .logo, #uklon-app .lastPage .logo {
   width: 300px;
   margin-bottom: 16px;
   -webkit-filter: drop-shadow(0 0 4px white);
 }
 
 @media (max-width: 990px) {
-  #uklon-app .welcomePage .logo {
+  #uklon-app .welcomePage .logo, #uklon-app .lastPage .logo {
     width: 280px;
   }
 }
 
-#uklon-app .welcomePage button {
+#uklon-app .welcomePage button, #uklon-app .lastPage button {
   text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.652), 0px 0px 3px rgba(255, 255, 255, 0.624);
   background-color: transparent;
   position: relative;
@@ -109,14 +109,14 @@ body {
   color: #fcd729;
 }
 
-#uklon-app .welcomePage button:hover::before {
+#uklon-app .welcomePage button:hover::before, #uklon-app .lastPage button:hover::before {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transform-origin: left center;
           transform-origin: left center;
 }
 
-#uklon-app .welcomePage button::before {
+#uklon-app .welcomePage button::before, #uklon-app .lastPage button::before {
   position: absolute;
   content: '';
   height: 2px;
@@ -290,7 +290,7 @@ body {
           animation: tremor 0.1s linear infinite;
 }
 
-#uklon-app .hpBar {
+#uklon-app .hpBar, #uklon-app .timeBar {
   position: absolute;
   width: 600px;
   height: 8px;
@@ -303,12 +303,24 @@ body {
           transform: translateX(-50%);
 }
 
-#uklon-app .hpBar .hpBarInner {
+#uklon-app .hpBar .hpBarInner, #uklon-app .hpBar .timeBarInner, #uklon-app .timeBar .hpBarInner, #uklon-app .timeBar .timeBarInner {
   width: 100%;
   height: 100%;
   background-color: #a50404;
   -webkit-transition: .2s all ease;
   transition: .2s all ease;
+}
+
+#uklon-app .timeBar {
+  bottom: 60px;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: .3s all ease;
+  transition: .3s all ease;
+}
+
+#uklon-app .timeBar .timeBarInner {
+  background-color: #79ceff;
 }
 
 @-webkit-keyframes appear {
@@ -492,6 +504,13 @@ body {
   left: 50%;
   -webkit-transform: translateX(calc(-50% - 24px));
           transform: translateX(calc(-50% - 24px));
+  z-index: 1;
+}
+
+.keysHidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .key__button {
@@ -556,32 +575,44 @@ body {
   will-change: tranform;
 }
 
-.key__button--1 {
-  -webkit-transform: translateY(5px);
-          transform: translateY(5px);
+.ArrowUp {
   -webkit-animation: key1 1.2s ease infinite;
           animation: key1 1.2s ease infinite;
 }
 
-.key__button--2 {
-  -webkit-transform: translate(105%, 130%);
-          transform: translate(105%, 130%);
-  -webkit-animation: key2 1.2s ease infinite;
-          animation: key2 1.2s ease infinite;
+.arrowUp {
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
 }
 
-.key__button--3 {
-  -webkit-transform: translate(-105%, 130%);
-          transform: translate(-105%, 130%);
+.ArrowLeft {
   -webkit-animation: key3 1.2s ease infinite;
           animation: key3 1.2s ease infinite;
 }
 
-.key__button--4 {
-  -webkit-transform: translateY(130%);
-          transform: translateY(130%);
+.arrowLeft {
+  -webkit-transform: translate(-105%, 130%);
+          transform: translate(-105%, 130%);
+}
+
+.ArrowRight {
+  -webkit-animation: key2 1.2s ease infinite;
+          animation: key2 1.2s ease infinite;
+}
+
+.arrowRight {
+  -webkit-transform: translate(105%, 130%);
+          transform: translate(105%, 130%);
+}
+
+.ArrowDown {
   -webkit-animation: key4 1.2s ease infinite;
           animation: key4 1.2s ease infinite;
+}
+
+.arrowDown {
+  -webkit-transform: translateY(130%);
+          transform: translateY(130%);
 }
 
 .arrow--1 {
@@ -590,13 +621,13 @@ body {
 }
 
 .arrow--2 {
-  -webkit-transform: rotate(180deg) scaleY(0.9);
-          transform: rotate(180deg) scaleY(0.9);
+  -webkit-transform: scaleY(0.9);
+          transform: scaleY(0.9);
 }
 
 .arrow--3 {
-  -webkit-transform: scaleY(0.9);
-          transform: scaleY(0.9);
+  -webkit-transform: rotate(180deg) scaleY(0.9);
+          transform: rotate(180deg) scaleY(0.9);
 }
 
 .arrow--4 {
@@ -784,5 +815,11 @@ body {
     -webkit-transform: translateY(130%);
             transform: translateY(130%);
   }
+}
+
+.lastPage {
+  position: absolute !important;
+  opacity: 0;
+  pointer-events: none;
 }
 /*# sourceMappingURL=styles.css.map */
